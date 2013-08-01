@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="baseConfigurator"
+          class="com.linpeng.svnbot.BaseConfigurator">
+        <property name="mode" value="dev"></property>
+        <property name="version" value="1"></property>
+    </bean>
+
+    <!-- Database -->
+    <!--
+     <bean id="dataSource"
+         class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+         <property name="driverClassName" value="${database.driver}" />
+         <property name="url" value="${database.url}" />
+         <property name="username" value="${database.username}" />
+         <property name="password" value="${database.password}" />
+     </bean>
+
+     <context:property-placeholder location="database.properties" />
+      -->
+</beans>

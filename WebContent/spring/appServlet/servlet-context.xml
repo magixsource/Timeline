@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+
+    <!-- Scans within the base package of the application for @Components to configure as beans -->
+    <!-- @Controller, @Service, @Configuration, etc. -->
+    <context:component-scan base-package="com.linpeng.svnbot"/>
+
+    <!-- Enables the Spring MVC @Controller programming model -->
+    <mvc:annotation-driven/>
+
+    <!-- spring mvc static resource -->
+    <mvc:resources mapping="/js/**" location="/static_resources/js/"/>
+    <mvc:resources mapping="/css/**" location="/static_resources/css/"/>
+    <mvc:resources mapping="/img/**" location="/static_resources/img/"/>
+    <mvc:resources mapping="/images/**" location="/static_resources/images/"/>
+    <mvc:default-servlet-handler/>
+    <!-- rythm basic configuration -->
+    <bean id="rythmConfigurator"
+          class="com.ctlok.springframework.web.servlet.view.rythm.RythmConfigurator">
+        <property name="mode" value="dev"/>
+        <property name="rootDirectory" value="/views/"/>
+        <!-- <property name="tagRootDirectory" value="/WEB-INF/views/tags/" /> -->
+        <property name="cacheInProductionModeOnly" value="true"/>
+        <property name="loadPreCompiled" value="true"/>
+        <!--
+              <property name="preCompiledRoot" value="true"></property>
+              <property name="tempDirectory" value="/WEB-INF/tmp/"></property>
+          -->
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="springCacheName" value="RYTHM_CACHE"/>
+    </bean>
+
+    <!-- rythm view resolver -->
+    <bean id="rythmViewResolver"
+          class="com.ctlok.springframework.web.servlet.view.rythm.RythmViewResolver">
+        <constructor-arg>
+            <ref bean="rythmConfigurator"/>
+        </constructor-arg>
+        <property name="prefix" value="/views/"/>
+        <property name="suffix" value=".html"/>
+        <!-- lower order value has a higher priority in [view-resolver]  -->
+        <property name="order" value="1"></property>
+    </bean>
+
+    <!-- rythm i18n -->
+    <bean
+            class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter"/>
+    <bean
+            class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors">
+            <ref bean="localeChangeInterceptor"/>
+        </property>
+    </bean>
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename" value="messages"/>
+        <!-- <property name="defaultEncoding" value="UTF-8" /> -->
+    </bean>
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="en"/>
+        <property name="cookieName" value="locale"/>
+        <property name="cookieMaxAge" value="31536000"/>
+    </bean>
+
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
+
+    <!-- rythm cache configuration -->
+    <bean id="cacheManagerFactory"
+          class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache.xml"/>
+    </bean>
+
+    <bean id="cacheManager"
+          class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="cacheManagerFactory"/>
+    </bean>
+
+</beans>
