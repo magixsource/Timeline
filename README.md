@@ -8,7 +8,7 @@ Introduce(简介)
 
 QuickView(鸟瞰)
 -
-<img src="http://img.com/timeline-quickview.jpg">
+<img src="https://github.com/magixsource/Timeline/blob/master/timeline-quickview.jpg">
 
 MainJars(主要Jar包)
 -
