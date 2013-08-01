@@ -1,12 +1,15 @@
 Timeline (时间轴)
 =
+
 Introduce(简介)
 -
-  Timeline is a simple application to record svn commit log and show on the web.
-  Timeline is base on Spring-mvc-3,Ebean,Rythm and H2.
+>Timeline is a simple application to record svn commit log and show on the web.
+>Timeline is base on Spring-mvc-3,Ebean,Rythm and H2.
+
 QuickView(鸟瞰)
 -
 <img src="http://img.com/timeline-quickview.jpg">
+
 MainJars(主要Jar包)
 -
 	spring-3.1.0-*.jar
