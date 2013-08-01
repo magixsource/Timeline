@@ -1,0 +1,19 @@
+提交测试，将触发post-commit
+linp
+2013-05-29 23:18:03 +0800 (Wed, 29 May 2013)
+Modified: trunk/orgin/src/com/linpeng/svnbot/hooks/HookType.java
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/HookType.java	2013-05-29 14:44:51 UTC (rev 6)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/HookType.java	2013-05-29 15:18:03 UTC (rev 7)
+@@ -4,8 +4,8 @@
+ package com.linpeng.svnbot.hooks;
+ 
+ /** 
+- * @author magix
+- *  
++ * @author magix 
++ *   
+  */
+ public enum HookType {
+ 	POST_COMMIT, POST_LOCK, POST_REVPROP_CHANGE, POST_UNLOCK, PRE_COMMIT, PRE_LOCK, PRE_REVPROP_CHANGE, PRE_UNLOCK, START_COMMIT
+

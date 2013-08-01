@@ -1,0 +1,13 @@
+一个算得上能用了的版本！ luckly
+linp
+2013-06-05 23:05:20 +0800 (Wed, 05 Jun 2013)
+Modified: trunk/orgin/src/com/linpeng/svnbot/hooks/text.txt
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/text.txt	2013-06-05 15:04:51 UTC (rev 24)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/text.txt	2013-06-05 15:05:20 UTC (rev 25)
+@@ -1 +1 @@
+-123456789066
+\ No newline at end of file
++12345678906666
+\ No newline at end of file
+

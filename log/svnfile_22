@@ -1,0 +1,105 @@
+‰∏Ä‰∏™ÁÆóÂæó‰∏äËÉΩÁî®‰∫ÜÁöÑÁâàÊú¨ÔºÅ luckly
+linp
+2013-06-05 22:56:20 +0800 (Wed, 05 Jun 2013)
+Added: trunk/orgin/resources/log4j-1.2.15.jar
+===================================================================
+(Binary files differ)
+
+
+Property changes on: trunk/orgin/resources/log4j-1.2.15.jar
+___________________________________________________________________
+Added: svn:mime-type
+   + application/octet-stream
+
+Deleted: trunk/orgin/src/com/linpeng/svnbot/hooks/HookType.java
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/HookType.java	2013-06-05 14:45:24 UTC (rev 21)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/HookType.java	2013-06-05 14:56:20 UTC (rev 22)
+@@ -1,12 +0,0 @@
+-/**
+- * π≥◊”µƒ¿‡–Õ
+- */
+-package com.linpeng.svnbot.hooks;
+-
+-/** 
+- * @author magix 
+- *   
+- */
+-public enum HookType {
+-	POST_COMMIT, POST_LOCK, POST_REVPROP_CHANGE, POST_UNLOCK, PRE_COMMIT, PRE_LOCK, PRE_REVPROP_CHANGE, PRE_UNLOCK, START_COMMIT
+-}
+
+Modified: trunk/orgin/src/com/linpeng/svnbot/hooks/PostCommintHook.java
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/PostCommintHook.java	2013-06-05 14:45:24 UTC (rev 21)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/PostCommintHook.java	2013-06-05 14:56:20 UTC (rev 22)
+@@ -4,6 +4,8 @@
+ import java.io.FileWriter;
+ import java.io.IOException;
+ 
++import org.apache.log4j.LogManager;
++import org.apache.log4j.Logger;
+ 
+ /**
+  * Hook around post-commit
+@@ -12,8 +14,8 @@
+  * 
+  */
+ public class PostCommintHook implements IHook {
+-//	private static final Logger log = LogManager
+-//			.getLogger(PostCommintHook.class);
++	private static final Logger log = LogManager
++			.getLogger(PostCommintHook.class);
+ 	private SVNInfo svnInfo;
+ 
+ 	public PostCommintHook(String svnServer, long revision) {
+@@ -22,7 +24,7 @@
+ 
+ 	@Override
+ 	public void invoke() {
+-		File file = new File("d:\\test.txt");
++		File file = new File("E:\\test.txt");
+ 		if (!file.exists()) {
+ 			try {
+ 				file.createNewFile();
+
+Modified: trunk/orgin/src/com/linpeng/svnbot/hooks/SVNInfo.java
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/SVNInfo.java	2013-06-05 14:45:24 UTC (rev 21)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/SVNInfo.java	2013-06-05 14:56:20 UTC (rev 22)
+@@ -17,7 +17,7 @@
+  */
+ public class SVNInfo {
+ 
+-//	private static final Logger logger = LogManager.getLogger(SVNInfo.class);
++	private static final Logger logger = LogManager.getLogger(SVNInfo.class);
+ 
+ 	private String svnServer;
+ 	private long revision;
+@@ -55,9 +55,9 @@
+ 			commitEntry = new Commit(log, author, time, diff);
+ 			reader.close();
+ 		} catch (FileNotFoundException e) {
+-//			logger.error(e.getMessage());
++			logger.error(e.getMessage());
+ 		} catch (IOException e) {
+-//			logger.error(e.getMessage());
++			logger.error(e.getMessage());
+ 		}
+ 		return null == commitEntry ? "" : commitEntry.toString();
+ 	}
+
+Modified: trunk/orgin/src/log4j.properties
+===================================================================
+--- trunk/orgin/src/log4j.properties	2013-06-05 14:45:24 UTC (rev 21)
++++ trunk/orgin/src/log4j.properties	2013-06-05 14:56:20 UTC (rev 22)
+@@ -9,7 +9,7 @@
+ #logfile configure
+ #log4j.appender.logfile=org.apache.log4j.DailyRollingFileAppender
+ log4j.appender.logfile=org.apache.log4j.FileAppender
+-log4j.appender.logfile.File=E:\Repositories\svnbot\log\svnhook.log
++log4j.appender.logfile.File=E:\\Repositories\\svnbot\\log\\svnhook.log
+ log4j.appender.logfile.layout=org.apache.log4j.PatternLayout
+ log4j.appender.logfile.layout.ConversionPattern= %d %p [%c] - <%m>%n
+ 
+

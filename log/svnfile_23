@@ -1,0 +1,18 @@
+一个算得上能用了的版本！ luckly
+linp
+2013-06-05 22:59:34 +0800 (Wed, 05 Jun 2013)
+Modified: trunk/orgin/src/com/linpeng/svnbot/hooks/SVNInfo.java
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/SVNInfo.java	2013-06-05 14:56:20 UTC (rev 22)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/SVNInfo.java	2013-06-05 14:59:34 UTC (rev 23)
+@@ -67,8 +67,7 @@
+ 	}
+ 
+ 	private String getLogFilePath() {
+-		return svnServer + File.separator + "log" + File.separator + "svnfile_"
+-				+ revision;
++		return svnServer;
+ 	}
+ 
+ 	class Commit {
+

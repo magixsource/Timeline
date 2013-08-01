@@ -1,0 +1,29 @@
+提交测试，将触发post-commit
+linp
+2013-05-29 23:23:41 +0800 (Wed, 29 May 2013)
+Modified: trunk/orgin/src/com/linpeng/svnbot/hooks/PostCommintHook.java
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/PostCommintHook.java	2013-05-29 15:18:03 UTC (rev 7)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/PostCommintHook.java	2013-05-29 15:23:41 UTC (rev 8)
+@@ -7,7 +7,7 @@
+  * 
+  */
+ public class PostCommintHook implements IHook {
+-	
++
+ 	@Override
+ 	public void invoke() {
+ 
+@@ -17,7 +17,9 @@
+ 	 * @param args
+ 	 */
+ 	public static void main(String[] args) {
+-
++		for (String string : args) {
++			System.out.println("----------" + string);
++		}
+ 	}
+ 
+ }
+
+8 E:\Repositories\svnbot

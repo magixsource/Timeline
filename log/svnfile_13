@@ -1,0 +1,13 @@
+提交测试，将触发post-commit
+linp
+2013-05-30 22:56:21 +0800 (Thu, 30 May 2013)
+Modified: trunk/orgin/src/com/linpeng/svnbot/hooks/text.txt
+===================================================================
+--- trunk/orgin/src/com/linpeng/svnbot/hooks/text.txt	2013-05-30 14:49:46 UTC (rev 12)
++++ trunk/orgin/src/com/linpeng/svnbot/hooks/text.txt	2013-05-30 14:56:21 UTC (rev 13)
+@@ -1 +1 @@
+-1234
+\ No newline at end of file
++12345
+\ No newline at end of file
+
