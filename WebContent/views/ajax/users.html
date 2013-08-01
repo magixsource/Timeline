@@ -1,0 +1,19 @@
+@args(){
+    List<com.linpeng.svnbot.model.User> users
+}
+
+@for(com.linpeng.svnbot.model.User user : users){
+    <div class="email-item pure-g" link="#tab-pane-@user.getId()" userid="@user.getId()" onclick="javascript:messageToggle(this);">
+        <div class="pure-u">
+            <img class="email-avatar" alt="YUI's avatar" src='@url("/img/assert/954501.png")' height="64" width="64"/>
+        </div>
+
+        <div class="pure-u-3-4">
+            <h5 class="email-name">@user.getName()</h5>
+            <h4 class="email-subject"></h4>
+            <p class="email-desc">
+            <span></span>
+            </p>
+        </div>
+    </div>
+    }

@@ -1,0 +1,121 @@
+@args() {
+	List<com.linpeng.svnbot.model.Application> applications
+}
+@extends(layout.layout_pure)
+@section(styles){
+<style>
+    .tab-pane{
+        padding-bottom: 30px;
+        /*display: none;*/
+    }
+    .tab-pane ul{
+        list-style-type: none;
+        font-size: 12px;
+        font-weight: normal;
+        border-bottom: 1px solid #ddd;
+    }
+    .tab-pane ul li{
+        padding-bottom: 20px;
+        border-left: 2px solid #d2691e;
+    }
+
+    .avatar{
+        border: 1px solid #d2691e;
+        border-radius: 15px;
+        position: relative;
+        left: -40px;
+        z-index: 999;
+        background-color: #ffffff;
+    }
+    .pure-context{
+        /*position: relative;*/
+        /*z-index: 999;*/
+        background-color: #ffffff;
+        /*left:40px;*/
+        /*top:0px;*/
+        margin-top:-70px;
+        margin-left: 40px;
+        border-left: 5px solid #ddd;
+    }
+    .application-menu-active{
+        background-color: #ffaf55;
+    }
+
+    .pure-li-active div.pure-context{
+        border-left:5px solid #6c91ff;
+    }
+    .pure-li-active img{
+         /*background-color: #6c91ff;*/
+    }
+</style>
+}
+
+    <div class="pure-g-r content" id="layout">
+        <div class="pure-u" id="nav">
+            <a href="#" class="nav-menu-button">Menu</a>
+
+            <div class="nav-inner">
+                <button class="pure-button primary-button">选定</button>
+
+                <div class="pure-menu pure-menu-open">
+                    <ul>
+                        @for(com.linpeng.svnbot.model.Application application:applications){
+                        <li><a class="application-menu-item" appid="@application.getId()" href="#">@application.getName()</a></li>
+                        }
+                        <li class="pure-menu-heading">资源状态</li>
+                        <li><a href="#"><span class="email-label-personal"></span>Personal</a></li>
+                        <li><a href="#"><span class="email-label-work"></span>Work</a></li>
+                        <li><a href="#"><span class="email-label-travel"></span>Travel</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pure-u-1" id="list">
+        </div>
+
+        <div class="pure-u-1" id="main">
+            <div class="tab-content" id="tab-content">
+
+                <div class="tab-pane" id="tab-pane-">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+@section(javascripts){
+<script>
+    //SVN Messages Toggle
+    function messageToggle(domObject){
+        $(".email-item").not($(domObject)).removeClass("email-item-unread");
+        $(domObject).addClass("email-item-unread");
+
+        var appid =  $(".application-menu-active").eq(0).attr("appid");
+        var userid = $(domObject).attr("userid");
+        $("#tab-content").load("/app/"+appid+"/user/"+userid+"/commits");
+    }
+
+    function singleMessageToggle(dom){
+        $obj = $(dom);
+        $(".pure-li-main").not($obj).removeClass("pure-li-active");
+        $obj.addClass("pure-li-active");
+        //TODO Nothing to do now
+    }
+
+	$(function(){
+        $(".application-menu-item").click(function(){
+            //class toggle
+            $(".application-menu-item").not($(this)).removeClass("application-menu-active");
+            $(this).addClass("application-menu-active");
+
+            var id = $(this).attr("appid");
+            $("#list").load('/app/'+id+'/users',function(){
+                //TODO Tell me load is complete
+            });
+        });
+
+	});
+</script>
+
+}

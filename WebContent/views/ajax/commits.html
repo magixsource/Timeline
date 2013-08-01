@@ -1,0 +1,23 @@
+@args(){
+List<com.linpeng.svnbot.model.SVNMessage> messages
+    }
+
+<div class="tab-pane" id="tab-pane-demo">
+        <ul>
+        @for(com.linpeng.svnbot.model.SVNMessage msg : messages){
+            <li>
+                <div class="pure-li-main" onclick="singleMessageToggle(this);">
+                    <div class="pure-u avatar">
+                        <img class="email-avatar" alt="avatar" src='@url("/img/assert/954501.png")' height="64" width="64"/>
+                    </div>
+                    <div class="pure-context">
+                        <p>@msg.getLog() </p>
+                        <p><span> @msg.getTime().format("yyyy-MM-dd HH:mm:ss")</span></p>
+                        <p>@msg.getDiff()</p>
+                    </div>
+
+                </div>
+            </li>
+        }
+        </ul>
+</div>
